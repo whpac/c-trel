@@ -1,2 +1,6 @@
+# Skip the binary and object files
+bin/
+obj/
+
 # The sample data
 _sample
