@@ -8,7 +8,7 @@ int main(){
         return 1;
     }
 
-    unsigned long long x = readVarint(f);
+    unsigned long long x = readVarint(f, NULL);
     fclose(f);
 
     printf("%llu\n", x);
