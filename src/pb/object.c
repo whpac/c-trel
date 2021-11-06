@@ -13,7 +13,7 @@ void disposeOfObject(Object* object){
 }
 
 void addPropertyToObject(Object* object, Property* property){
-    Property* first_prop;
+    Property* first_prop = object->firstProperty;
     setNextProperty(property, first_prop);
     object->firstProperty = property;
 }
