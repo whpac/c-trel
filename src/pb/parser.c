@@ -2,12 +2,12 @@
 
 #define MAX_VARINT_LENGTH 10
 
-void readObjectFromStream(FILE* stream, unsigned long long limit){
+void readObjectFromStream(FILE* stream, uint limit){
     
 }
 
-int64 readFixed64(FILE* stream){
-    int64 buf;
+uint64 readFixed64(FILE* stream){
+    uint64 buf;
     fread(&buf, 1, 8, stream);
     return buf;
 }
