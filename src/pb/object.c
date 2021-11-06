@@ -5,7 +5,9 @@ struct Object {
 };
 
 Object* newObject(){
-    return (Object*)getMemory(sizeof(Object));
+    Object* obj = (Object*)getMemory(sizeof(Object));
+    obj->firstProperty = NULL;
+    return obj;
 }
 
 void disposeOfObject(Object* object){
