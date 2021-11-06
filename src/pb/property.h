@@ -1,7 +1,7 @@
 #ifndef PB_PROPERTY_H
 #define PB_PROPERTY_H
 
-#include<malloc.h>
+#include "../memory/allocator.h"
 #include "../typedefs.h"
 
 typedef struct Property Property;

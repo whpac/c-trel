@@ -1,7 +1,7 @@
 #ifndef PB_OBJECT_H
 #define PB_OBJECT_H
 
-#include<malloc.h>
+#include "../memory/allocator.h"
 #include "../typedefs.h"
 #include "property.h"
 

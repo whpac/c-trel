@@ -20,7 +20,7 @@ Object* readObjectFromStream(FILE* stream, uint64 limit){
 
         switch(type){
             case 0:
-                value = malloc(sizeof(uint64));
+                value = getMemory(sizeof(uint64));
                 *(uint64*)value = readVarint(stream, &field_read_bytes);
                 read_bytes += field_read_bytes;
                 setPropertyValue(prop, value, 8);
@@ -47,13 +47,13 @@ Object* readObjectFromStream(FILE* stream, uint64 limit){
 }
 
 uint64* readFixed64(FILE* stream){
-    uint64* buf = (uint64*)malloc(sizeof(uint64));
+    uint64* buf = (uint64*)getMemory(sizeof(uint64));
     fread(buf, 1, 8, stream);
     return buf;
 }
 
 uint32* readFixed32(FILE* stream){
-    uint32* buf = (uint32*)malloc(sizeof(uint32));
+    uint32* buf = (uint32*)getMemory(sizeof(uint32));
     fread(buf, 1, 4, stream);
     return buf;
 }

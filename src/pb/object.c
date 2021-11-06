@@ -5,11 +5,11 @@ struct Object {
 };
 
 Object* newObject(){
-    return (Object*)malloc(sizeof(Object));
+    return (Object*)getMemory(sizeof(Object));
 }
 
 void disposeOfObject(Object* object){
-    free(object);
+    freeMemory(object);
 }
 
 void addPropertyToObject(Object* object, Property* property){

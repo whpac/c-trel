@@ -8,7 +8,7 @@ struct Property {
 };
 
 Property* newProperty(uint64 field_id){
-    Property* prop = (Property*)malloc(sizeof(Property));
+    Property* prop = (Property*)getMemory(sizeof(Property));
 
     prop->fieldId = field_id;
     prop->valueSize = 0;
@@ -19,7 +19,7 @@ Property* newProperty(uint64 field_id){
 }
 
 void disposeOfProperty(Property* property){
-    free(property);
+    freeMemory(property);
 }
 
 void setNextProperty(Property* this_property, Property* next_property){
