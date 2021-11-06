@@ -9,15 +9,20 @@ int main(){
         return 1;
     }
 
-    Object* o = readObjectFromStream(f, 8);
+    Object* o = readObjectFromStream(f, 13);
     fclose(f);
 
     Property* p = getObjectFirstProperty(o);
     while(p != NULL){
         uint64* v = (uint64*)getPropertyValue(p);
         printf("[%llu]: %llu\n", getPropertyFieldId(p), *v);
-        p = getNextProperty(p);
+        Property* p2 = getNextProperty(p);
+        freeMemory(v);
+        disposeOfProperty(p);
+        p = p2;
     }
+
+    disposeOfObject(o);
 
     return 0;
 }

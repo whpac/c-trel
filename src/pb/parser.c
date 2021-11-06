@@ -30,7 +30,13 @@ Object* readObjectFromStream(FILE* stream, uint64 limit){
                 read_bytes += 8;
                 setPropertyValue(prop, value, 8);
                 break;
-            case 2:
+            case 2: {
+                    uint64 size = readVarint(stream, &field_read_bytes);
+                    read_bytes += field_read_bytes;
+                    value = getMemory(size);
+                    read_bytes += readBlock(stream, value, size);
+                    setPropertyValue(prop, value, size);
+                }
                 break;
             case 5:
                 value = readFixed32(stream);
@@ -86,4 +92,8 @@ uint64 readVarint(FILE* stream, uint64* read_bytes){
     }
 
     return num;
+}
+
+uint64 readBlock(FILE* stream, void* buffer, uint64 limit){
+    return fread(buffer, 1, limit, stream);
 }

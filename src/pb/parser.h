@@ -31,4 +31,13 @@ uint32* readFixed32(FILE* stream);
  */
 uint64 readVarint(FILE* stream, uint64* read_bytes);
 
+/**
+ * Reads a sequence of bytes and saves it into the buffer.
+ * Returns a number of bytes that were actually read.
+ * @param stream The stream to read from
+ * @param buffer A pointer to the destination memory area
+ * @param limit How many bytes to read
+ */
+uint64 readBlock(FILE* stream, void* buffer, uint64 limit);
+
 #endif
