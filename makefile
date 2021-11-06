@@ -11,10 +11,10 @@ run-text: all
 	./${OUTPUT} text
 
 ${OUTPUT}: ${OBJ}
-	g++ -o $@ $^
+	gcc -o $@ $^
 
 obj/%.o: src/%.c ${HEADERS}
-	g++ -c $< -o $@
+	gcc -c $< -o $@
 
 clean:
 	rm -rf obj
