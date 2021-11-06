@@ -1,16 +1,14 @@
 #include<stdio.h>
 #include "typedefs.h"
 #include "pb/parser.h"
+#include "files/reader.h"
 
 int main(){
-    FILE* f = fopen("_sample/test.bin", "rb");
-    if(f == NULL){
-        printf("Blad\n");
-        return 1;
-    }
+    uint64 size;
+    void* data = readFile("_sample/test.bin", &size);
 
-    Object* o = readObjectFromStream(f, 13);
-    fclose(f);
+    Object* o = readObjectFromStream((byte*)data, 13);
+    freeMemory(data);
 
     Property* p = getObjectFirstProperty(o);
     while(p != NULL){
