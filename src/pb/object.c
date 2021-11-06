@@ -5,15 +5,19 @@ struct Object {
 };
 
 Object* newObject(){
-    return malloc(sizeof(Object));
+    return (Object*)malloc(sizeof(Object));
 }
 
 void disposeOfObject(Object* object){
     free(object);
 }
 
-void addProperty(Object* object, Property* property){
+void addPropertyToObject(Object* object, Property* property){
     Property* first_prop;
     setNextProperty(property, first_prop);
     object->firstProperty = property;
+}
+
+Property* getObjectFirstProperty(Object* object){
+    return object->firstProperty;
 }

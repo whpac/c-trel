@@ -23,6 +23,12 @@ void disposeOfObject(Object* object);
  * @param object The object to add the property to
  * @param property The property to add
  */
-void addProperty(Object* object, Property* property)
+void addPropertyToObject(Object* object, Property* property);
+
+/**
+ * Returns the first property of an object
+ * @param object The object
+ */
+Property* getObjectFirstProperty(Object* object);
 
 #endif

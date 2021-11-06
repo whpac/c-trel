@@ -25,4 +25,36 @@ void disposeOfProperty(Property* property);
  */
 void setNextProperty(Property* this_property, Property* next_property);
 
+/**
+ * Sets value for the given property
+ * @param property The property for which set the value
+ * @param value A pointer to the value
+ * @param value_size Size of the value in bytes
+ */
+void setPropertyValue(Property* property, void* value, uint64 value_size);
+
+/**
+ * Returns the field id of the property
+ * @param property The property
+ */
+uint64 getPropertyFieldId(Property* property);
+
+/**
+ * Returns the size of the value stored in the property
+ * @param property The property
+ */
+uint64 getPropertyValueSize(Property* property);
+
+/**
+ * Returns the value stored in the property
+ * @param property The property
+ */
+void* getPropertyValue(Property* property);
+
+/**
+ * Returns the next property for an object.
+ * @param property The current property
+ */
+Property* getNextProperty(Property* property);
+
 #endif
