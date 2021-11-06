@@ -8,10 +8,13 @@ int main(){
         return 1;
     }
 
-    unsigned long long x = readVarint(f, NULL);
+    Object* o = readObjectFromStream(f, 8);
     fclose(f);
 
-    printf("%llu\n", x);
+    Property* p = getObjectFirstProperty(o);
+    void* v = getPropertyValue(p);
+    printf("%d\n", *(int*)v);
+
 
     return 0;
 }

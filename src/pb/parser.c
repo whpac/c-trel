@@ -2,8 +2,10 @@
 
 #define MAX_VARINT_LENGTH 10
 
-void readObjectFromStream(FILE* stream, uint64 limit){
+Object* readObjectFromStream(FILE* stream, uint64 limit){
     uint64 read_bytes = 0;
+    Object* object = newObject();
+
     while(read_bytes < limit && !feof(stream)){
         // Read the field descriptor
         uint64 field_read_bytes;
@@ -11,28 +13,37 @@ void readObjectFromStream(FILE* stream, uint64 limit){
         read_bytes += field_read_bytes;
 
         unsigned char type = field_desc & 7;
-        field_desc >>= 3;
 
+        // TODO: Change into malloc
         uint64 value;
+        Property* prop = newProperty(field_desc >> 3);
+        addPropertyToObject(object, prop);
 
         switch(type){
             case 0:
-                value = readVarint(stream, NULL);
+                value = readVarint(stream, &field_read_bytes);
+                read_bytes += field_read_bytes;
+                setPropertyValue(prop, &value, 8);
                 break;
             case 1:
                 value = readFixed64(stream);
                 read_bytes += 8;
+                setPropertyValue(prop, &value, 8);
                 break;
             case 2:
                 break;
             case 5:
                 value = readFixed32(stream);
                 read_bytes += 4;
+                setPropertyValue(prop, &value, 4);
                 break;
             default:
                 printf("Unknown message type: %hhu.\n", type);
         }
+        printf("[%lld]: %lld\n", field_desc >> 3, value);
     }
+
+    return object;
 }
 
 uint64 readFixed64(FILE* stream){

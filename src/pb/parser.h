@@ -3,13 +3,14 @@
 
 #include<stdio.h>
 #include "../typedefs.h"
+#include "object.h"
 
 /**
  * Reads an object from stream
  * @param stream The stream to read from
  * @param limit Maximum number of bytes to read
  */
-void readObjectFromStream(FILE* stream, uint64 limit);
+Object* readObjectFromStream(FILE* stream, uint64 limit);
 
 /**
  * Reads a 64-bit number from the stream
