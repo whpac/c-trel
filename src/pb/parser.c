@@ -2,7 +2,7 @@
 
 #define MAX_VARINT_LENGTH 10
 
-void readObjectFromStream(FILE* stream, uint limit){
+void readObjectFromStream(FILE* stream, uint64 limit){
     
 }
 
