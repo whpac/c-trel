@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include "typedefs.h"
 #include "pb/parser.h"
 
 int main(){
@@ -12,9 +13,11 @@ int main(){
     fclose(f);
 
     Property* p = getObjectFirstProperty(o);
-    void* v = getPropertyValue(p);
-    printf("%d\n", *(int*)v);
-
+    while(p != NULL){
+        uint64* v = (uint64*)getPropertyValue(p);
+        printf("[%llu]: %llu\n", getPropertyFieldId(p), *v);
+        p = getNextProperty(p);
+    }
 
     return 0;
 }

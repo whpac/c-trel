@@ -16,13 +16,13 @@ Object* readObjectFromStream(FILE* stream, uint64 limit);
  * Reads a 64-bit number from the stream
  * @param stream The stream to read from
  */
-uint64 readFixed64(FILE* stream);
+uint64* readFixed64(FILE* stream);
 
 /**
  * Reads a 32-bit number from the stream
  * @param stream The stream to read from
  */
-uint32 readFixed32(FILE* stream);
+uint32* readFixed32(FILE* stream);
 
 /**
  * Reads a varint from the stream and returns as int64
