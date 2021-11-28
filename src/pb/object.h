@@ -31,4 +31,10 @@ void addPropertyToObject(Object* object, Property* property);
  */
 Property* getObjectFirstProperty(Object* object);
 
+/**
+ * Removes the first property of the given object and disposes of it.
+ * @param object The object whose first property to remove
+ */
+void removeObjectFirstProperty(Object* object);
+
 #endif

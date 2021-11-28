@@ -20,11 +20,14 @@ Property* newProperty(uint64 field_id){
     return prop;
 }
 
-void disposeOfProperty(Property* property){
+Property* disposeOfProperty(Property* property){
+    Property* next = property->nextProperty;
+
     if(property->valueNeedsFree){
         freeMemory(property->value);
     }
     freeMemory(property);
+    return next;
 }
 
 void setNextProperty(Property* this_property, Property* next_property){

@@ -13,10 +13,10 @@ typedef struct Property Property;
 Property* newProperty(uint64 field_id);
 
 /**
- * Disposes of the property
+ * Disposes of the property and returns the next one in the list
  * @param property The property to destroy
  */
-void disposeOfProperty(Property* property);
+Property* disposeOfProperty(Property* property);
 
 /**
  * Sets the next property for the specified one

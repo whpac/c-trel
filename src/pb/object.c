@@ -23,3 +23,11 @@ void addPropertyToObject(Object* object, Property* property){
 Property* getObjectFirstProperty(Object* object){
     return object->firstProperty;
 }
+
+void removeObjectFirstProperty(Object* object){
+    Property* first = object->firstProperty;
+    if(first == NULL) return;
+
+    object->firstProperty = getNextProperty(first);
+    disposeOfProperty(first);
+}
