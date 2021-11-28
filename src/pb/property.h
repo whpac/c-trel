@@ -30,8 +30,9 @@ void setNextProperty(Property* this_property, Property* next_property);
  * @param property The property for which set the value
  * @param value A pointer to the value
  * @param value_size Size of the value in bytes
+ * @param needs_free Whether the value needs to be freed
  */
-void setPropertyValue(Property* property, void* value, uint64 value_size);
+void setPropertyValue(Property* property, void* value, uint64 value_size, char needs_free);
 
 /**
  * Returns the field id of the property

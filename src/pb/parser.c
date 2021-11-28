@@ -26,31 +26,30 @@ Object* readObjectFromStream(byte* stream, uint64 limit){
                 value = getMemory(sizeof(uint64));
                 *(uint64*)value = readVarint(stream, &field_read_bytes);
                 stream += field_read_bytes;
-                setPropertyValue(prop, value, 8);
+                setPropertyValue(prop, value, 8, true);
                 break;
             case 1:
                 value = readFixed64(stream);
                 stream += 8;
-                setPropertyValue(prop, value, 8);
+                setPropertyValue(prop, value, 8, true);
                 break;
             case 2: {
+                    // Save pointer to the byte string without copying
+                    // This may be done later
                     uint64 size = readVarint(stream, &field_read_bytes);
                     stream += field_read_bytes;
-                    value = getMemory(size);
-                    readBlock(stream, value, size);
+                    setPropertyValue(prop, stream, size, false);
                     stream += size;
-                    setPropertyValue(prop, value, size);
                 }
                 break;
             case 5:
                 value = readFixed32(stream);
                 stream += 4;
-                setPropertyValue(prop, value, 4);
+                setPropertyValue(prop, value, 4, true);
                 break;
             default:
                 printf("Unknown message type: %hhu.\n", type);
         }
-        printf("[%lld]: %lld\n", field_desc >> 3, *(uint64*)value);
     }
 
     return object;
