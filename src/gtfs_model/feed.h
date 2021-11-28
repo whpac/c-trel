@@ -1,6 +1,8 @@
 #ifndef GTFSMODEL_FEED_H
 #define GTFSMODEL_FEED_H
 
+#include "../typedefs.h"
+
 typedef struct FeedMessage {
     struct FeedHeader* header;
     struct FeedEntity* entity; // []
@@ -10,7 +12,7 @@ typedef struct FeedMessage {
 typedef struct FeedHeader {
     char* gtfsVersion;
     int incrementality;
-    long long timestamp;
+    uint64 timestamp;
 } FeedHeader;
 
 typedef struct FeedEntity {
@@ -20,24 +22,24 @@ typedef struct FeedEntity {
     struct FeedEntity* next;
 } FeedEntity;
 
-struct VehiclePosition {
+typedef struct VehiclePosition {
     struct TripDescriptor* trip;
     struct VehicleDescriptor* vehicle;
     struct Position* position;
-    int currentStopSeq;
+    uint32 currentStopSeq;
     char* stopId;
     int currentStatus;
-    long long timestamp;
-};
+    uint64 timestamp;
+} VehiclePosition;
 
-struct TripDescriptor {
+typedef struct TripDescriptor {
     char* tripId;
     char* routeId;
     int directionId;
     char* startTime;
     char* startDate;
     int scheduleRelationship;
-};
+} TripDescriptor;
 
 struct VehicleDescriptor {
     char* id;

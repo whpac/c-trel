@@ -10,4 +10,8 @@ FeedHeader* buildFeedHeader(Object* obj);
 
 FeedEntity* buildFeedEntity(Object* obj);
 
+VehiclePosition* buildVehiclePosition(Object* obj);
+
+TripDescriptor* buildTripDescriptor(Object* obj);
+
 #endif
