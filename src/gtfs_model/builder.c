@@ -8,8 +8,8 @@ FeedMessage* buildFeedMessage(Object* obj){
     msg->entity = NULL;
     msg->entityCount = 0;
 
-    Property* p = getObjectFirstProperty(obj);
-    while(p != NULL){
+    Property* p;
+    while(NULL != (p = getObjectFirstProperty(obj))){
         uint64 id = getPropertyFieldId(p);
         uint64 sz = getPropertyValueSize(p);
         void* value = getPropertyValue(p);
@@ -30,10 +30,7 @@ FeedMessage* buildFeedMessage(Object* obj){
             }
         }
 
-        // freeMemory(v);
-        Property* p2 = getNextProperty(p);
-        disposeOfProperty(p);
-        p = p2;
+        removeObjectFirstProperty(obj);
     }
 
     disposeOfObject(obj);
@@ -42,8 +39,9 @@ FeedMessage* buildFeedMessage(Object* obj){
 
 FeedHeader* buildFeedHeader(Object* obj){
     FeedHeader* hdr = getMemory(sizeof(FeedHeader));
-    Property* p = getObjectFirstProperty(obj);
-    while(p != NULL){
+
+    Property* p;
+    while(NULL != (p = getObjectFirstProperty(obj))){
         uint64 id = getPropertyFieldId(p);
         uint64 sz = getPropertyValueSize(p);
         void* value = getPropertyValue(p);
@@ -61,10 +59,7 @@ FeedHeader* buildFeedHeader(Object* obj){
                 break;
         }
 
-        // freeMemory(v);
-        Property* p2 = getNextProperty(p);
-        disposeOfProperty(p);
-        p = p2;
+        removeObjectFirstProperty(obj);
     }
 
     disposeOfObject(obj);
@@ -74,8 +69,9 @@ FeedHeader* buildFeedHeader(Object* obj){
 FeedEntity* buildFeedEntity(Object* obj){
     FeedEntity* entity = getMemory(sizeof(FeedEntity));
     entity->next = NULL;
-    Property* p = getObjectFirstProperty(obj);
-    while(p != NULL){
+
+    Property* p;
+    while(NULL != (p = getObjectFirstProperty(obj))){
         uint64 id = getPropertyFieldId(p);
         uint64 sz = getPropertyValueSize(p);
         void* value = getPropertyValue(p);
@@ -93,10 +89,7 @@ FeedEntity* buildFeedEntity(Object* obj){
                 break;
         }
 
-        // freeMemory(v);
-        Property* p2 = getNextProperty(p);
-        disposeOfProperty(p);
-        p = p2;
+        removeObjectFirstProperty(obj);
     }
 
     disposeOfObject(obj);
